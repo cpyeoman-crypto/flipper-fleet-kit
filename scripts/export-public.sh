@@ -13,8 +13,13 @@ echo "== running quarantine gate =="
 scripts/quarantine_check.sh
 
 echo "== exporting public tree to ${DEST} =="
-rm -rf "$DEST"
-mkdir -p "$DEST"
+# Preserve the destination's .git (the live public repo) while removing
+# everything else, so stale files don't linger between exports.
+if [ -d "$DEST" ]; then
+  find "$DEST" -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+else
+  mkdir -p "$DEST"
+fi
 
 # Copy only git-tracked files (so local/ + captures/ are excluded by construction),
 # falling back to an explicit excludelist if not a git repo yet.

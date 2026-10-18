@@ -5,7 +5,10 @@ your own Flipper, your own devices and radio links.
 
 ## Requirements
 ```bash
-python3 -m pip install --user pyserial
+# Debian/Ubuntu/Pop!_OS block system-wide pip (PEP 668) — use the kit's venv:
+python3 -m venv .venv            # from the repo root, once
+.venv/bin/pip install pyserial
+.venv/bin/python collectors/flipper_cli.py --info
 ```
 Add yourself to the `dialout` group (or use sudo) so you can open `/dev/ttyACM0`:
 ```bash
