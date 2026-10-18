@@ -1,0 +1,28 @@
+# ---- Quarantine: never commit real fleet data or raw captures ----
+# Real node targets (IPs, MACs, fob IDs) live here, scrubbed example excepted.
+local/*
+!local/EXAMPLE.targets.json
+
+# Raw RF / NFC / RFID / packet captures — never enter git.
+captures/*
+!captures/.gitkeep
+*.sub
+*.nfc
+*.rfid
+*.ir
+*.pcap
+*.pcapng
+
+# Secret-shaped files
+*.env
+*.pem
+*.key
+*_secret*
+secrets.*
+
+# Python / OS noise
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store

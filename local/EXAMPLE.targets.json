@@ -1,0 +1,37 @@
+{
+  "_comment": "EXAMPLE scrubbed target list. Copy to local/targets.json (git-ignored) and fill with YOUR OWN devices. Only devices listed here are in-scope for capture.",
+  "owner": "fARM.nET",
+  "subghz_sensors": [
+    {
+      "label": "garage-door-sensor",
+      "freq_mhz": 433.92,
+      "protocol": "Princeton",
+      "id": "REPLACE_WITH_YOUR_SENSOR_ID",
+      "metric": "door_state",
+      "owned": true
+    },
+    {
+      "label": "example-weather-915",
+      "freq_mhz": 915.0,
+      "protocol": "RAW",
+      "id": "REPLACE",
+      "metric": "temp_c",
+      "owned": true
+    }
+  ],
+  "access_tags": [
+    {
+      "label": "front-door-fob",
+      "tech": "lfrfid-em4100",
+      "uid_hash": "store-only-a-salted-hash-never-the-raw-uid",
+      "owned": true
+    }
+  ],
+  "serial_nodes": [
+    {
+      "label": "example-node-console",
+      "baud": 115200,
+      "note": "GPIO UART rescue when SSH down; see collectors/README.md"
+    }
+  ]
+}

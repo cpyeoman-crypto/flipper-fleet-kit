@@ -1,0 +1,30 @@
+{
+  "_comment": "Declarative Flipper SD-card loadout for fleet diagnostics. Copy to local/ and adjust. Firmware is intentionally a variable, not a choice this kit makes for you.",
+  "firmware": {
+    "variant": "UNSET",
+    "notes": "One of: stock-ofw | unleashed | roguemaster | momentum. Affects Sub-GHz regions/protocols."
+  },
+  "sd_mount": "/ext",
+  "apps": [
+    { "name": "UART bridge", "builtin": true, "role": "serial-console-rescue", "priority": "core" },
+    { "name": "GPIO",        "builtin": true, "role": "pin-control" },
+    { "name": "Sub-GHz",     "builtin": true, "role": "sensor-telemetry-capture", "mode": ["Read", "Read RAW"] },
+    { "name": "NFC",         "builtin": true, "role": "access-inventory" },
+    { "name": "RFID 125kHz", "builtin": true, "role": "access-inventory" },
+    { "name": "iButton",     "builtin": true, "role": "access-inventory" },
+    { "name": "Infrared",    "builtin": true, "role": "lab-av-power-runbook" }
+  ],
+  "sd_tree": ["subghz", "nfc", "lfrfid", "infrared", "ibutton", "apps"],
+  "uart_console": { "tx_pin": 13, "rx_pin": 14, "gnd_pins": [8, 11, 18], "baud": 115200, "format": "8N1", "flow": "none" },
+  "physical_kit": [
+    "Flipper Zero + charged battery",
+    "DuPont jumpers (TX/RX/GND)",
+    "Labeled GND/TX/RX console pigtail",
+    "USB-C cable",
+    "Optional: ESP32 Wi-Fi Dev Board (read-only survey only)"
+  ],
+  "optional_wifi_devboard": {
+    "enabled": false,
+    "posture": "read-only passive survey of our own SSIDs; captures quarantined as .pcap; no deauth/beacon/portal flows"
+  }
+}
